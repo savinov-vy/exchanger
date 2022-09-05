@@ -1,0 +1,16 @@
+-- begin EXCHANGE_DISK
+create unique index IDX_EXCHANGE_DISK_UK_NAME on EXCHANGE_DISK (NAME) where DELETE_TS is null ^
+-- end EXCHANGE_DISK
+-- begin EXCHANGE_GENRE
+create unique index IDX_EXCHANGE_GENRE_UK_NAME on EXCHANGE_GENRE (NAME) where DELETE_TS is null ^
+-- end EXCHANGE_GENRE
+-- begin EXCHANGE_ITEM_DISK
+alter table EXCHANGE_ITEM_DISK add constraint FK_EXCHANGE_ITEM_DISK_ON_USER foreign key (USER_ID) references SEC_USER(ID)^
+alter table EXCHANGE_ITEM_DISK add constraint FK_EXCHANGE_ITEM_DISK_ON_DISK foreign key (DISK_ID) references EXCHANGE_DISK(ID)^
+create index IDX_EXCHANGE_ITEM_DISK_ON_USER on EXCHANGE_ITEM_DISK (USER_ID)^
+create index IDX_EXCHANGE_ITEM_DISK_ON_DISK on EXCHANGE_ITEM_DISK (DISK_ID)^
+-- end EXCHANGE_ITEM_DISK
+-- begin EXCHANGE_DISK_GENRE_LINK
+alter table EXCHANGE_DISK_GENRE_LINK add constraint FK_DISGEN_ON_GENRE foreign key (GENRE_ID) references EXCHANGE_GENRE(ID)^
+alter table EXCHANGE_DISK_GENRE_LINK add constraint FK_DISGEN_ON_DISK foreign key (DISK_ID) references EXCHANGE_DISK(ID)^
+-- end EXCHANGE_DISK_GENRE_LINK

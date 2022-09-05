@@ -2,5 +2,9 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="exchange" transaction-type="RESOURCE_LOCAL">
 
+        <class>com.company.exchange.entity.AppUser</class>
+        <class>com.company.exchange.entity.Genre</class>
+        <class>com.company.exchange.entity.Disk</class>
+        <class>com.company.exchange.entity.ItemDisk</class>
     </persistence-unit>
 </persistence>
