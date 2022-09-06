@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-exchange" insertBefore="administration" caption="mainMsg://menu_config.application-exchange">
+        <item screen="exchange_AppUser.browse" caption="mainMsg://menu_config.exchange_AppUser.browse"/>
+        <item screen="exchange_Disk.browse" caption="mainMsg://menu_config.exchange_Disk.browse"/>
+        <item screen="exchange_Genre.browse" caption="mainMsg://menu_config.exchange_Genre.browse"/>
+        <item screen="exchange_TakenItem.browse" caption="mainMsg://menu_config.exchange_TakenItem.browse"/>
     </menu>
 </menu-config>

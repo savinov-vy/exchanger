@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://appUserBrowse.caption"
+        focusComponent="appUsersTable"
+        messagesPack="com.company.exchange.web.screens.appuser">
+    <data readOnly="true">
+        <collection id="appUsersDc"
+                    class="com.company.exchange.entity.AppUser"
+                    view="appUser-view-custom">
+            <loader id="appUsersDl">
+                <query>
+                    <![CDATA[select e from exchange_AppUser e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="appUsersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="appUsersTable"
+                dataLoader="appUsersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="appUsersTable"
+                    width="100%"
+                    dataContainer="appUsersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="login"/>
+                <column id="name"/>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="middleName"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="appUsersTable.create"/>
+                <button id="editBtn" action="appUsersTable.edit"/>
+                <button id="removeBtn" action="appUsersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

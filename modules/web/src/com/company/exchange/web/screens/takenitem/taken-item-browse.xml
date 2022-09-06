@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://takenItemBrowse.caption"
+        focusComponent="takenItemsTable"
+        messagesPack="com.company.exchange.web.screens.takenitem">
+    <data readOnly="true">
+        <collection id="takenItemsDc"
+                    class="com.company.exchange.entity.TakenItem">
+            <view extends="_base">
+                <property name="disk" view="_minimal">
+                    <property name="genre" view="_minimal"/>
+                </property>
+            </view>
+            <loader id="takenItemsDl">
+                <query>
+                    <![CDATA[select e from exchange_TakenItem e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="takenItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="takenItemsTable"
+                dataLoader="takenItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="takenItemsTable"
+                    width="100%"
+                    dataContainer="takenItemsDc">
+            <actions>
+                <action id="refresh" type="refresh"/>
+            </actions>
+            <columns>
+                <column id="user"/>
+                <column id="disk"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshBtn" action="takenItemsTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

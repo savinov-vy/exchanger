@@ -25,6 +25,10 @@ public class Disk extends StandardEntity {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
+    @NotNull
+    @Column(name = "DESCRIPTION", nullable = false)
+    private String description;
+
     @JoinTable(name = "EXCHANGE_DISK_GENRE_LINK",
             joinColumns = @JoinColumn(name = "DISK_ID"),
             inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
@@ -32,6 +36,14 @@ public class Disk extends StandardEntity {
     @ManyToMany
     @OnDeleteInverse(DeletePolicy.UNLINK)
     private List<Genre> genre;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public List<Genre> getGenre() {
         return genre;

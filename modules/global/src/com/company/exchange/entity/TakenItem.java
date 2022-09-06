@@ -14,10 +14,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "EXCHANGE_ITEM_DISK")
-@Entity(name = "exchange_ItemDisk")
+@Table(name = "EXCHANGE_TAKEN_ITEM")
+@Entity(name = "exchange_TakenItem")
 @NamePattern("%s %s|user,disk")
-public class ItemDisk extends StandardEntity {
+public class TakenItem extends StandardEntity {
     private static final long serialVersionUID = -904231343552144222L;
 
     @NotNull

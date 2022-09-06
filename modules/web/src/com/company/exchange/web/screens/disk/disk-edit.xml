@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://diskEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.exchange.web.screens.disk">
+    <data>
+        <instance id="diskDc"
+                  class="com.company.exchange.entity.Disk">
+            <view extends="_local">
+                <property name="genre" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="genreDc" property="genre"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="diskDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <groupBox id="genreBox" caption="msg://com.company.exchange.entity/Disk.genre">
+            <table id="genreTable" dataContainer="genreDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="genreTable.add"/>
+                    <button action="genreTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

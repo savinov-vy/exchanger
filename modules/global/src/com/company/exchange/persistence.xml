@@ -5,6 +5,6 @@
         <class>com.company.exchange.entity.AppUser</class>
         <class>com.company.exchange.entity.Genre</class>
         <class>com.company.exchange.entity.Disk</class>
-        <class>com.company.exchange.entity.ItemDisk</class>
+        <class>com.company.exchange.entity.TakenItem</class>
     </persistence-unit>
 </persistence>
