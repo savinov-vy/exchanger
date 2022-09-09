@@ -4,21 +4,31 @@
         messagesPack="com.company.exchange.web.screens.register">
     <layout>
         <grid align="MIDDLE_CENTER"
+              id="gridRegister"
               spacing="true">
             <columns count="2"/>
             <rows>
                 <row>
                     <label value="Login" align="MIDDLE_LEFT"/>
                     <textField id="loginField"
-                               required="true"/>
+                               required="true"
+                               property="login">
+                        <validators>
+                            <regexp regexp="^\w+.*\w*\d*@\w+.*\w*\.\w+$" message="msg://error.login.pattern"/>
+                        </validators>
+                    </textField>
                 </row>
                 <row>
                     <label value="Password" align="MIDDLE_LEFT"/>
                     <passwordField id="passwordField"
-                                   required="true"/>
+                                   required="true">
+                        <validators>
+                            <size min="4" message="msg://error.password.lose"/>
+                        </validators>
+                    </passwordField>
                 </row>
                 <row>
-                    <label value="ConfirmPassword" align="MIDDLE_LEFT"/>
+                    <label value="Password confirmation" align="MIDDLE_LEFT"/>
                     <passwordField id="confirmPasswordField"
                                    required="true"/>
                 </row>

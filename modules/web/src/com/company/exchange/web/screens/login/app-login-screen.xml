@@ -71,6 +71,7 @@
                                     height="40px"
                                     stylename="c-login-button primary"/>
                             <linkButton id="registerBtn"
+                                        align="MIDDLE_CENTER"
                                         caption="Register"/>
                         </vbox>
                     </vbox>

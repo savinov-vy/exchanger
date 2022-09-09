@@ -14,7 +14,7 @@
     <view entity="exchange_TakenItem" name="takenItem-view-custom" extends="_local">
         <property name="user" view="_minimal"/>
         <property name="disk" view="_minimal">
-            <property name="genre" view="_minimal"/>
+        <property name="genre" view="_minimal"/>
         </property>
     </view>
 </views>

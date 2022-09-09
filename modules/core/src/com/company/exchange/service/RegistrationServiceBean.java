@@ -2,67 +2,52 @@ package com.company.exchange.service;
 
 import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.PasswordEncryption;
-import com.haulmont.cuba.security.entity.Group;
 import com.haulmont.cuba.security.entity.Role;
 import com.haulmont.cuba.security.entity.User;
 import com.haulmont.cuba.security.entity.UserRole;
+import com.haulmont.cuba.security.role.RolesService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.UUID;
+
+import static com.company.exchange.constants.AppConstant.CUSTOMER_ROLE;
 
 @Service(RegistrationService.NAME)
 public class RegistrationServiceBean implements RegistrationService {
-    /**
-     * ID of the Group for self-registered users.
-     */
-    private static final String COMPANY_GROUP_ID = "0fa2b1a5-1d68-4d69-9fbd-dff348347f93";
 
-    /**
-     * ID of the Role to be assigned to self-registered users.
-     */
-    private static final String DEFAULT_ROLE_ID = "3ec31528-dc0e-c341-7727-7b46771ae9ff";
+    private static final Logger log = LoggerFactory.getLogger(RegistrationServiceBean.class);
+    private static final boolean IS_SUCCESSFULLY_SAVE = true;
 
     @Inject
     private DataManager dataManager;
-
     @Inject
     private Metadata metadata;
-
     @Inject
     private PasswordEncryption passwordEncryption;
-
+    @Inject
+    private RolesService rolesService;
 
     @Override
-    public RegistrationResult registerUser(String login, String password) {
-
-        // Load group and role to be assigned to the new user
-        Group group = dataManager.load(LoadContext.create(Group.class).setId(UUID.fromString(COMPANY_GROUP_ID)));
-        Role role = dataManager.load(LoadContext.create(Role.class).setId(UUID.fromString(DEFAULT_ROLE_ID)));
-
-        // Create a user instance
+    public boolean registerUser(String login, String password) {
+        Role customerRole = rolesService.getRoleDefinitionAndTransformToRole(CUSTOMER_ROLE);
         User user = metadata.create(User.class);
         user.setLogin(login);
         user.setPassword(passwordEncryption.getPasswordHash(user.getId(), password));
 
-        // Note that the platform does not support the default group out of the box, so here we define the default group id and set it for the newly registered users.
-        user.setGroup(group);
-
-        /** Create a link to the role
-         * Here we programmatically set the default role.
-         * Another way is to set the default role by using the DB scripts. Set IS_DEFAULT_ROLE parameter to true in the insert script for the role.
-         * Also, this parameter might be changed in the Role Editor screen.
-         */
         UserRole userRole = metadata.create(UserRole.class);
         userRole.setUser(user);
-        userRole.setRole(role);
+        userRole.setRole(customerRole);
 
-        // Save new entities
-        dataManager.commit(new CommitContext(user, userRole));
-
-        return new RegistrationResult(user);
+        try {
+            dataManager.commit(new CommitContext(user, userRole));
+        } catch (Exception e) {
+            log.warn("Created new user not successfully. Exception with message: " + e.getMessage());
+            return !IS_SUCCESSFULLY_SAVE;
+        }
+        return IS_SUCCESSFULLY_SAVE;
     }
 }
