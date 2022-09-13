@@ -8,9 +8,11 @@ import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -36,6 +38,17 @@ public class Disk extends StandardEntity {
     @ManyToMany
     @OnDeleteInverse(DeletePolicy.UNLINK)
     private List<Genre> genres;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "disk", optional = false)
+    private TakenItem takenItem;
+
+    public TakenItem getTakenItem() {
+        return takenItem;
+    }
+
+    public void setTakenItem(TakenItem takenItem) {
+        this.takenItem = takenItem;
+    }
 
     public String getDescription() {
         return description;
