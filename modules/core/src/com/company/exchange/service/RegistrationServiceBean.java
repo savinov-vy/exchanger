@@ -1,5 +1,6 @@
 package com.company.exchange.service;
 
+import com.company.exchange.core.role.CustomerRole;
 import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
@@ -13,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-
-import static com.company.exchange.constants.AppConstant.CUSTOMER_ROLE;
 
 @Service(RegistrationService.NAME)
 public class RegistrationServiceBean implements RegistrationService {
@@ -33,7 +32,7 @@ public class RegistrationServiceBean implements RegistrationService {
 
     @Override
     public boolean registerUser(String login, String password) {
-        Role customerRole = rolesService.getRoleDefinitionAndTransformToRole(CUSTOMER_ROLE);
+        Role customerRole = rolesService.getRoleDefinitionAndTransformToRole(CustomerRole.NAME);
         User user = metadata.create(User.class);
         user.setLogin(login);
         user.setPassword(passwordEncryption.getPasswordHash(user.getId(), password));
