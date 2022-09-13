@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  shop_db:
+    image: postgres:12-alpine
+    container_name: exchange_db
+    ports:
+      - "5438:5432"
+    environment:
+      - POSTGRES_USER=cuba
+      - POSTGRES_PASSWORD=cuba
+      - POSTGRES_DB=exchange

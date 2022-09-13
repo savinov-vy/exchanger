@@ -9,7 +9,7 @@
                     class="com.company.exchange.entity.TakenItem">
             <view extends="_base">
                 <property name="disk" view="_minimal">
-                    <property name="genre" view="_minimal"/>
+                    <property name="genres" view="_minimal"/>
                 </property>
             </view>
             <loader id="takenItemsDl">

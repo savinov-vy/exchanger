@@ -3,7 +3,7 @@
 
     <view entity="exchange_Disk" name="disk-view-minimal" extends="_minimal">
         <property name="description"/>
-        <property name="genre" view="_minimal"/>
+        <property name="genres" view="_minimal"/>
     </view>
     <view entity="exchange_Genre" name="genre-view" extends="_local"/>
     <view entity="exchange_AppUser" name="appUser-view-custom" extends="_minimal">
@@ -14,7 +14,7 @@
     <view entity="exchange_TakenItem" name="takenItem-view-custom" extends="_local">
         <property name="user" view="_minimal"/>
         <property name="disk" view="_minimal">
-        <property name="genre" view="_minimal"/>
+        <property name="genres" view="_minimal"/>
         </property>
     </view>
 </views>

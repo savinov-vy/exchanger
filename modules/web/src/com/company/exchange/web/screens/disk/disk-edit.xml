@@ -7,10 +7,10 @@
         <instance id="diskDc"
                   class="com.company.exchange.entity.Disk">
             <view extends="_local">
-                <property name="genre" view="_minimal"/>
+                <property name="genres" view="_minimal"/>
             </view>
             <loader/>
-            <collection id="genreDc" property="genre"/>
+            <collection id="genreDc" property="genres"/>
         </instance>
     </data>
     <dialogMode height="600"
@@ -19,9 +19,10 @@
         <form id="form" dataContainer="diskDc">
             <column width="350px">
                 <textField id="nameField" property="name"/>
+                <textArea id="descriptionArea" property="description"/>
             </column>
         </form>
-        <groupBox id="genreBox" caption="msg://com.company.exchange.entity/Disk.genre">
+        <groupBox id="genreBox" caption="msg://com.company.exchange.entity/Disk.genres">
             <table id="genreTable" dataContainer="genreDc" width="100%" height="200px">
                 <actions>
                     <action id="add" type="add"/>

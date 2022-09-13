@@ -8,7 +8,7 @@
         <collection id="disksDc"
                     class="com.company.exchange.entity.Disk">
             <view extends="_local">
-                <property name="genre" view="_minimal"/>
+                <property name="genres" view="_minimal"/>
             </view>
             <loader id="disksDl">
                 <query>
