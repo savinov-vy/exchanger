@@ -13,6 +13,7 @@
             <map>
                 <entry key="exchange_RegistrationService" value="com.company.exchange.service.RegistrationService"/>
                 <entry key="exchange_UserService" value="com.company.exchange.service.UserService"/>
+                <entry key="exchange_TakenItemService" value="com.company.exchange.entity.TakenItemService"/>
             </map>
         </property>
     </bean>

@@ -15,11 +15,12 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
+import static com.company.exchange.constant.AppConstants.IS_SUCCESSFULLY_SAVE;
+
 @Service(RegistrationService.NAME)
 public class RegistrationServiceBean implements RegistrationService {
 
     private static final Logger log = LoggerFactory.getLogger(RegistrationServiceBean.class);
-    private static final boolean IS_SUCCESSFULLY_SAVE = true;
 
     @Inject
     private DataManager dataManager;

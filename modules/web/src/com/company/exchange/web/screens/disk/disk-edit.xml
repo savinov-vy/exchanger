@@ -6,9 +6,7 @@
     <data>
         <instance id="diskDc"
                   class="com.company.exchange.entity.Disk">
-            <view extends="_local">
-                <property name="genres" view="_minimal"/>
-            </view>
+            <view extends="disk-view-edit"/>
             <loader/>
             <collection id="genreDc" property="genres"/>
         </instance>

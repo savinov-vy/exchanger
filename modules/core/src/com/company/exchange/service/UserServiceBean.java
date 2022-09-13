@@ -1,16 +1,24 @@
 package com.company.exchange.service;
 
+import com.company.exchange.core.role.ManagerRole;
 import com.company.exchange.entity.AppUser;
 import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Transaction;
+import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.core.global.ViewBuilder;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
+import java.util.List;
+
 @Service(UserService.NAME)
 public class UserServiceBean implements UserService {
     private final Persistence persistence;
+
+    @Inject
+    private DataManager dataManager;
 
     public UserServiceBean(Persistence persistence) {
         this.persistence = persistence;
@@ -21,12 +29,27 @@ public class UserServiceBean implements UserService {
         AppUser user;
         try (Transaction tx = persistence.createTransaction()) {
             EntityManager em = persistence.getEntityManager();
-            user = (AppUser) em.createQuery("select u from sec$User u where u.login=:login")
+            user = em.createQuery("select u from sec$User u where u.login=:login", AppUser.class)
                     .setView(ViewBuilder.of(AppUser.class).addView(View.LOCAL).build())
                     .setParameter("login", login)
                     .getFirstResult();
             tx.commit();
         }
         return user;
+    }
+
+    @Override
+    public AppUser getOneManager() {
+        List<AppUser> managers = getUsersByRoleName(ManagerRole.NAME);
+        return !managers.isEmpty() ? managers.get(0) : null;
+    }
+
+    @Override
+    public List<AppUser> getUsersByRoleName(String roleName) {
+        return dataManager.load(AppUser.class)
+                .query("select ur.user from sec$UserRole ur " +
+                        "where ur.roleName=?1", roleName)
+                .view(ViewBuilder.of(AppUser.class).addView(View.MINIMAL).build())
+                .list();
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
-    <view entity="exchange_Disk" name="disk-view-minimal" extends="_minimal">
+    <view entity="exchange_Disk" name="disk-view-edit" extends="_minimal">
         <property name="description"/>
         <property name="genres" view="_minimal"/>
     </view>
