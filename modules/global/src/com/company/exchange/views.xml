@@ -6,6 +6,11 @@
         <property name="description"/>
         <property name="genres" view="_minimal"/>
     </view>
+    <view entity="exchange_Disk" name="disk-view-browse" extends="_minimal">
+        <property name="takenItem" view="_minimal"/>
+        <property name="description"/>
+        <property name="genres" view="_minimal"/>
+    </view>
     <view entity="exchange_Genre" name="genre-view" extends="_local"/>
     <view entity="exchange_AppUser" name="appUser-view-custom" extends="_minimal">
         <property name="firstName"/>

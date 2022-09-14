@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @Entity(name = "exchange_AppUser")
 @Extends(User.class)
-@NamePattern("%s - %s|name,login")
+@NamePattern("%s / %s|name,login")
 public class AppUser extends User {
     private static final long serialVersionUID = 3548010996494422520L;
 }
