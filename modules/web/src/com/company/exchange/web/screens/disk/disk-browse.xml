@@ -34,7 +34,7 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="takenItem.user"/>
+                <column id="takenItem.user" caption="msg://diskTaken"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
