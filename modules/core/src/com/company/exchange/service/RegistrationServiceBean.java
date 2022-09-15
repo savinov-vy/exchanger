@@ -8,7 +8,6 @@ import com.haulmont.cuba.core.global.PasswordEncryption;
 import com.haulmont.cuba.security.entity.Role;
 import com.haulmont.cuba.security.entity.User;
 import com.haulmont.cuba.security.entity.UserRole;
-import com.haulmont.cuba.security.role.RolesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -29,11 +28,11 @@ public class RegistrationServiceBean implements RegistrationService {
     @Inject
     private PasswordEncryption passwordEncryption;
     @Inject
-    private RolesService rolesService;
+    private RoleService roleService;
 
     @Override
     public boolean registerUser(String login, String password) {
-        Role customerRole = rolesService.getRoleDefinitionAndTransformToRole(CustomerRole.NAME);
+        Role customerRole = roleService.getRoleByName(CustomerRole.NAME);
         User user = metadata.create(User.class);
         user.setLogin(login);
         user.setPassword(passwordEncryption.getPasswordHash(user.getId(), password));

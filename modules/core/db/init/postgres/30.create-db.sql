@@ -21,13 +21,6 @@ values ('2220b80b-4e83-ec6c-9662-6d02548165af', '2022-09-15 08:47:08', 'admin', 
 
 
 -- fill users
-
-insert into SEC_USER_ROLE
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID, ROLE_NAME)
-values ('fbe44c8b-9ea1-cd16-3bd6-3f8df7a41827', 1, '2022-09-15 10:19:07', 'admin', '2022-09-15 10:19:07', null, null,
-        null, 'a405db59-e674-4f63-8afe-269dda788fe8', 'bd29f9da-e811-2f8e-1356-b6bfe2d3371f', 'AnonymousRole');
-
-
 insert into SEC_USER
 (DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
  PASSWORD_ENCRYPTION, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO,
@@ -40,14 +33,12 @@ values ('exchange_AppUser', '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', 1, '2022-09-
 
 insert into SEC_USER_ROLE
 (ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID, ROLE_NAME)
-values ('918f3d83-055f-779b-82ca-1ab2d993fc5b', 1, '2022-09-15 08:47:08', 'admin', '2022-09-15 08:47:08', null, null,
-        null, '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', '2220b80b-4e83-ec6c-9662-6d02548165af', 'ManagerRole');
-
-insert into SEC_USER_ROLE
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID, ROLE_NAME)
 values ('e256f471-24f2-933e-5827-683e29dbc452', 1, '2022-09-15 08:47:08', 'admin', '2022-09-15 08:47:08', null, null,
-        null, '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', 'eec4311d-15ef-0706-5e00-a1601c7babae', 'system-minimal');
-
+        null, '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', 'eec4311d-15ef-0706-5e00-a1601c7babae', 'system-minimal'),
+       ('fbe44c8b-9ea1-cd16-3bd6-3f8df7a41827', 1, '2022-09-15 10:19:07', 'admin', '2022-09-15 10:19:07', null, null,
+        null, 'a405db59-e674-4f63-8afe-269dda788fe8', 'bd29f9da-e811-2f8e-1356-b6bfe2d3371f', 'AnonymousRole'),
+       ('918f3d83-055f-779b-82ca-1ab2d993fc5b', 1, '2022-09-15 08:47:08', 'admin', '2022-09-15 08:47:08', null, null,
+        null, '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', '2220b80b-4e83-ec6c-9662-6d02548165af', 'ManagerRole');
 
 -- fill Genres
 insert into EXCHANGE_GENRE
