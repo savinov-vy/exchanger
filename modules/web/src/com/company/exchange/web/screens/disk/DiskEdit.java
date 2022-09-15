@@ -21,7 +21,7 @@ public class DiskEdit extends StandardEditor<Disk> {
     @Subscribe
     public void onInitEntity(InitEntityEvent<Disk> event) {
         Disk newDisk = event.getEntity();
-        TakenItem managerTakenItem = takenItemService.createNewManagerTaken(newDisk);
+        TakenItem managerTakenItem = takenItemService.setManagerTaken(newDisk);
         TakenItem hasManager = dataContext.merge(managerTakenItem);
         newDisk.setTakenItem(hasManager);
     }
