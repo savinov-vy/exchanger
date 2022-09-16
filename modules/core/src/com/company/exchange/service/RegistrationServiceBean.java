@@ -1,12 +1,11 @@
 package com.company.exchange.service;
 
 import com.company.exchange.core.role.CustomerRole;
+import com.company.exchange.entity.AppUser;
 import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
-import com.haulmont.cuba.core.global.PasswordEncryption;
 import com.haulmont.cuba.security.entity.Role;
-import com.haulmont.cuba.security.entity.User;
 import com.haulmont.cuba.security.entity.UserRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,23 +25,22 @@ public class RegistrationServiceBean implements RegistrationService {
     @Inject
     private Metadata metadata;
     @Inject
-    private PasswordEncryption passwordEncryption;
-    @Inject
     private RoleService roleService;
+    @Inject
+    private UserService userService;
 
     @Override
     public boolean registerUser(String login, String password) {
+        AppUser newUser = userService.createUserOf(login, password);
         Role customerRole = roleService.getRoleByName(CustomerRole.NAME);
-        User user = metadata.create(User.class);
-        user.setLogin(login);
-        user.setPassword(passwordEncryption.getPasswordHash(user.getId(), password));
 
         UserRole userRole = metadata.create(UserRole.class);
-        userRole.setUser(user);
+        userRole.setUser(newUser);
+        userRole.setRoleName(CustomerRole.NAME);
         userRole.setRole(customerRole);
 
         try {
-            dataManager.commit(new CommitContext(user, userRole));
+            dataManager.commit(new CommitContext(newUser, userRole));
         } catch (Exception e) {
             log.warn("Created new user not successfully. Exception with message: " + e.getMessage());
             return !IS_SUCCESSFULLY_SAVE;

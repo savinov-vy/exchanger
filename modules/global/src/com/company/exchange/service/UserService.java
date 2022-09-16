@@ -12,4 +12,6 @@ public interface UserService {
     AppUser getOneManager();
 
     List<AppUser> getUsersByRoleName(String roleName);
+
+    AppUser createUserOf(String login, String password);
 }

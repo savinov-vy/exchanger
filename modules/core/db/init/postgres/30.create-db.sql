@@ -1,5 +1,4 @@
 -- fill roles
-
 insert into sec_role (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, SYS_TENANT_ID,
                       NAME, LOC_NAME, DESCRIPTION, IS_DEFAULT_ROLE, ROLE_TYPE, SECURITY_SCOPE)
 values ('2220b80b-4e83-ec6c-9662-6d02548165af', '2022-09-15 08:47:08', 'admin', 1, '2022-09-15 08:47:08', 'admin', null,
@@ -18,7 +17,6 @@ values ('2220b80b-4e83-ec6c-9662-6d02548165af', '2022-09-15 08:47:08', 'admin', 
        ('f4efc0f7-dad8-53d4-0594-ff5d82bf6c9c', '2022-09-15 08:47:08', 'admin', 1, '2022-09-15 08:47:08', 'admin', null,
         null, null, 'system-full-access', 'Роль администратора', 'Роль с полными системными возможностями ', null, null,
         'GENERIC_UI');
-
 
 -- fill users
 insert into SEC_USER

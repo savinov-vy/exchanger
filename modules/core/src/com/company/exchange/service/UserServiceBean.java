@@ -1,11 +1,14 @@
 package com.company.exchange.service;
 
+import com.company.exchange.constant.AppConstants;
 import com.company.exchange.core.role.ManagerRole;
 import com.company.exchange.entity.AppUser;
 import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.core.global.PasswordEncryption;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.core.global.ViewBuilder;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,10 @@ public class UserServiceBean implements UserService {
 
     @Inject
     private DataManager dataManager;
+    @Inject
+    private Metadata metadata;
+    @Inject
+    private PasswordEncryption passwordEncryption;
 
     public UserServiceBean(Persistence persistence) {
         this.persistence = persistence;
@@ -51,5 +58,14 @@ public class UserServiceBean implements UserService {
                         "where ur.roleName=?1", roleName)
                 .view(ViewBuilder.of(AppUser.class).addView(View.MINIMAL).build())
                 .list();
+    }
+
+    @Override
+    public AppUser createUserOf(String login, String password) {
+        AppUser user = metadata.create(AppUser.class);
+        user.setLogin(login);
+        user.setPassword(passwordEncryption.getPasswordHash(user.getId(), password));
+        user.setGroupNames(AppConstants.DEFAULT_GROUP);
+        return user;
     }
 }
