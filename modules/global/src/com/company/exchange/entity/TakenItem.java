@@ -2,7 +2,6 @@ package com.company.exchange.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
-import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
 import com.haulmont.cuba.core.global.DeletePolicy;
 
@@ -22,14 +21,12 @@ public class TakenItem extends StandardEntity {
 
     @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
-    @OnDelete(DeletePolicy.UNLINK)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID")
     private AppUser user;
 
     @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
-    @OnDelete(DeletePolicy.UNLINK)
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DISK_ID")
     private Disk disk;

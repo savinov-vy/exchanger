@@ -17,10 +17,8 @@
         <property name="lastName"/>
         <property name="middleName"/>
     </view>
-    <view entity="exchange_TakenItem" name="takenItem-view-custom" extends="_local">
-        <property name="user" view="_minimal"/>
-        <property name="disk" view="_minimal">
-        <property name="genres" view="_minimal"/>
-        </property>
+    <view entity="exchange_TakenItem" name="takenItem-view-diskEdit" extends="_minimal">
+        <property name="user" view="_local"/>
+        <property name="disk" view="_local"/>
     </view>
 </views>

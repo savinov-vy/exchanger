@@ -24,10 +24,10 @@ public class CustomerRole extends AnnotatedRoleDefinition {
         return super.screenPermissions();
     }
 
+    @EntityAccess(entityClass = Disk.class, operations = {EntityOp.UPDATE, EntityOp.READ})
     @EntityAccess(entityClass = User.class, operations = EntityOp.READ)
-    @EntityAccess(entityClass = TakenItem.class, operations = {EntityOp.READ, EntityOp.UPDATE})
+    @EntityAccess(entityClass = TakenItem.class, operations = {EntityOp.READ, EntityOp.UPDATE, EntityOp.CREATE})
     @EntityAccess(entityClass = Genre.class, operations = EntityOp.READ)
-    @EntityAccess(entityClass = Disk.class, operations = EntityOp.READ)
     @Override
     public EntityPermissionsContainer entityPermissions() {
         return super.entityPermissions();

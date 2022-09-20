@@ -10,6 +10,14 @@
             <loader/>
             <collection id="genreDc" property="genres"/>
         </instance>
+        <collection id="takenItemDc" class="com.company.exchange.entity.TakenItem"
+                    view="takenItem-view-diskEdit">
+            <loader id="takenItemLc">
+                <query>
+                    <![CDATA[select e from exchange_TakenItem e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
@@ -17,8 +25,21 @@
         <form id="form" dataContainer="diskDc">
             <column width="350px">
                 <textField id="nameField" property="name"/>
-                <lookupField id="takenItemField" property="takenItem.user" caption="msg://diskTaken" editable="false"/>
+                <lookupField id="takenItemField"
+                             optionsContainer="takenItemDc"
+                             property="takenItem"
+                             caption="msg://diskTaken"
+                             editable="false"/>
                 <textArea id="descriptionArea" property="description"/>
+                <buttonsPanel css="display: flex; justify-content: flex-end;">
+                    <button id="takeBtn"
+                            caption="msg://btn.takeDisk"
+                            stylename="primary"/>
+                    <button id="giveBtn"
+                            caption="msg://btn.giveDisk"
+                            stylename="friendly"
+                            css="margin-right: 0"/>
+                </buttonsPanel>
             </column>
         </form>
         <groupBox id="genreBox" caption="msg://com.company.exchange.entity/Disk.genres">
@@ -28,7 +49,7 @@
                     <action id="exclude" type="exclude"/>
                 </actions>
                 <columns>
-                    <column id="name"/>
+                    <column id="name" caption="msg://genreName"/>
                 </columns>
                 <buttonsPanel>
                     <button action="genreTable.add"/>
@@ -37,7 +58,7 @@
             </table>
         </groupBox>
         <hbox id="editActions" spacing="true">
-            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="DiskEditCommitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
     </layout>

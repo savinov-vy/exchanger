@@ -4,10 +4,10 @@
         caption="msg://diskBrowse.caption"
         focusComponent="disksTable"
         messagesPack="com.company.exchange.web.screens.disk">
-    <data readOnly="true">
+    <data>
         <collection id="disksDc"
-                    class="com.company.exchange.entity.Disk">
-            <view extends="disk-view-browse"/>
+                    class="com.company.exchange.entity.Disk"
+                    view="disk-view-browse">
             <loader id="disksDl">
                 <query>
                     <![CDATA[select e from exchange_Disk e]]>
@@ -31,8 +31,6 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
-                <action id="takeDisk" caption="msg://takeDisk"/>
-                <action id="giveDisk" caption="msg://giveDisk"/>
             </actions>
             <columns>
                 <column id="name"/>
@@ -44,8 +42,8 @@
                 <button id="createBtn" action="disksTable.create"/>
                 <button id="editBtn" action="disksTable.edit"/>
                 <button id="removeBtn" action="disksTable.remove"/>
-                <button id="takeBtn" action="disksTable.takeDisk"/>
-                <button id="giveBtn" action="disksTable.giveDisk"/>
+                <button id="takeBtn" caption="msg://btn.takeDisk" stylename="primary"/>
+                <button id="giveBtn" caption="msg://btn.giveDisk" stylename="friendly"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
