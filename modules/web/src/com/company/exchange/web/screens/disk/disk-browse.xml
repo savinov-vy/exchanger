@@ -31,6 +31,8 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="take" trackSelection="true"/>
+                <action id="give" trackSelection="true"/>
             </actions>
             <columns>
                 <column id="name"/>
@@ -42,8 +44,8 @@
                 <button id="createBtn" action="disksTable.create"/>
                 <button id="editBtn" action="disksTable.edit"/>
                 <button id="removeBtn" action="disksTable.remove"/>
-                <button id="takeBtn" caption="msg://btn.takeDisk" stylename="primary"/>
-                <button id="giveBtn" caption="msg://btn.giveDisk" stylename="friendly"/>
+                <button id="takeBtn" caption="msg://btn.takeDisk" stylename="primary" action="disksTable.take"/>
+                <button id="giveBtn" caption="msg://btn.giveDisk" stylename="friendly" action="disksTable.give"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
