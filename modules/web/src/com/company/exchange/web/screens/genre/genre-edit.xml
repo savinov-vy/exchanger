@@ -10,8 +10,6 @@
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="genreDc">
             <column width="350px">

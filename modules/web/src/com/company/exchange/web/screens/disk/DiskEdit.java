@@ -22,22 +22,36 @@ public class DiskEdit extends StandardEditor<Disk> {
     @Subscribe
     public void onInitEntity(InitEntityEvent<Disk> event) {
         Disk newDisk = event.getEntity();
-        TakenItem managerTakenItem = takenItemService.setManagerTaken(newDisk);
-        TakenItem hasManager = dataContext.merge(managerTakenItem);
-        newDisk.setTakenItem(hasManager);
+        setOwnerDiskManager(newDisk);
     }
 
     @Subscribe("takeBtn")
     public void onTakeBtnClick(Button.ClickEvent event) {
-        Disk editedDisk = getEditedEntity();
-        TakenItem managerTakenItem = takenItemService.setCurrentUserTaken(editedDisk);
-        TakenItem hasManager = dataContext.merge(managerTakenItem);
-        editedDisk.setTakenItem(hasManager);
+        Disk takeDisk = getEditedEntity();
+        setOwnerDiskCustomer(takeDisk);
     }
 
     @Subscribe("DiskEditCommitAndCloseBtn")
     public void onDiskEditCommitAndCloseBtnClick(Button.ClickEvent event) {
         Disk editedDisk = getEditedEntity();
         takenItemService.setDeleteBeforeTakenItem(editedDisk);
+    }
+
+    @Subscribe("giveBtn")
+    public void onGiveBtnClick(Button.ClickEvent event) {
+        Disk giveDisk = getEditedEntity();
+        setOwnerDiskManager(giveDisk);
+    }
+
+    private void setOwnerDiskCustomer(Disk disk) {
+        TakenItem managerTakenItem = takenItemService.setCurrentUserTaken(disk);
+        TakenItem hasManager = dataContext.merge(managerTakenItem);
+        disk.setTakenItem(hasManager);
+    }
+
+    private void setOwnerDiskManager(Disk disk) {
+        TakenItem takenItem = takenItemService.setManagerTaken(disk);
+        TakenItem hasManager = dataContext.merge(takenItem);
+        disk.setTakenItem(hasManager);
     }
 }
