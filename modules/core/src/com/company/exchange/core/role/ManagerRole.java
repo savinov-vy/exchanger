@@ -19,7 +19,9 @@ import com.haulmont.cuba.security.role.ScreenPermissionsContainer;
 public class ManagerRole extends AnnotatedRoleDefinition {
     public final static String NAME = "ManagerRole";
 
-    @ScreenAccess(screenIds = {"exchange_AppUser.browse", "application-exchange", "exchange_Disk.browse", "exchange_Genre.browse", "mainWindow", "exchange_AppUser.edit", "exchange_Disk.edit", "exchange_Genre.edit"})
+    @ScreenAccess(screenIds = {"exchange_AppUser.browse", "application-exchange", "exchange_Disk.browse",
+            "exchange_Genre.browse", "mainWindow", "exchange_AppUser.edit", "exchange_Disk.edit",
+            "exchange_Genre.edit", "sec$User.edit"})
     @Override
     public ScreenPermissionsContainer screenPermissions() {
         return super.screenPermissions();

@@ -29,6 +29,33 @@ values ('exchange_AppUser', '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', 1, '2022-09-
         'Васильевич', null, null, 'ru', null, null, true, false, '0fa2b1a5-1d68-4d69-9fbd-dff348347f93', null, null,
         null);
 
+insert into SEC_USER
+(DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
+ PASSWORD_ENCRYPTION, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO,
+ ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
+values ('exchange_AppUser', '1d0b8579-054f-c301-f652-c70fa11d9614', 1, '2022-09-21 08:48:05', 'anonymous',
+        '2022-09-21 08:48:05', null, null, null, 'user1@mail.ru', 'user1@mail.ru',
+        '$2a$10$ooGW0lCIeECsv085DKCYMOyyo2FtsduLH6cxC88fIdvnTbK00K0Ym', 'bcrypt', null, null, null, null, null, null,
+        null, null, null, true, false, null, 'Customers', null, null);
+
+insert into SEC_USER
+(DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
+ PASSWORD_ENCRYPTION, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO,
+ ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
+values ('exchange_AppUser', '6c68191f-5fc0-abbb-055d-3bfe140524ff', 1, '2022-09-21 08:48:25', 'anonymous',
+        '2022-09-21 08:48:25', null, null, null, 'user2@mail.ru', 'user2@mail.ru',
+        '$2a$10$p79Shj2iv0xcnkZM9ADoiezxxbHQSdHMyYn0GcZFCq8IzwuebK2Uy', 'bcrypt', null, null, null, null, null, null,
+        null, null, null, true, false, null, 'Customers', null, null);
+
+insert into SEC_USER
+(DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
+ PASSWORD_ENCRYPTION, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO,
+ ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
+values ('exchange_AppUser', '6d4b036f-7528-7f8e-d67c-c25f6ec30b33', 1, '2022-09-21 08:48:48', 'anonymous',
+        '2022-09-21 08:48:48', null, null, null, 'user3@mail.ru', 'user3@mail.ru',
+        '$2a$10$752H79iUK7fvOGw/SftMOuqgvwZpEMC11Y4hhiFv9qSh9IVdxXxV.', 'bcrypt', null, null, null, null, null, null,
+        null, null, null, true, false, null, 'Customers', null, null);
+
 insert into SEC_USER_ROLE
 (ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID, ROLE_NAME)
 values ('e256f471-24f2-933e-5827-683e29dbc452', 1, '2022-09-15 08:47:08', 'admin', '2022-09-15 08:47:08', null, null,
@@ -36,7 +63,22 @@ values ('e256f471-24f2-933e-5827-683e29dbc452', 1, '2022-09-15 08:47:08', 'admin
        ('fbe44c8b-9ea1-cd16-3bd6-3f8df7a41827', 1, '2022-09-15 10:19:07', 'admin', '2022-09-15 10:19:07', null, null,
         null, 'a405db59-e674-4f63-8afe-269dda788fe8', 'bd29f9da-e811-2f8e-1356-b6bfe2d3371f', 'AnonymousRole'),
        ('918f3d83-055f-779b-82ca-1ab2d993fc5b', 1, '2022-09-15 08:47:08', 'admin', '2022-09-15 08:47:08', null, null,
-        null, '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', '2220b80b-4e83-ec6c-9662-6d02548165af', 'ManagerRole');
+        null, '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', '2220b80b-4e83-ec6c-9662-6d02548165af', 'ManagerRole'),
+
+       ('1d0b8579-054f-c301-f652-c70fa11d9614', 1, '2022-09-21 08:48:05', 'anonymous', '2022-09-21 08:48:05', null, null,
+       null, '1d0b8579-054f-c301-f652-c70fa11d9614', 'ab5da3b3-7445-9cd7-fcf2-23b02a3c32ab', 'CustomerRole'),
+       ('96ddc6a2-e074-e007-46d5-8f812b9654dd', 1, '2022-09-21 08:48:05', 'anonymous', '2022-09-21 08:48:05', null, null,
+        null, '1d0b8579-054f-c301-f652-c70fa11d9614', 'eec4311d-15ef-0706-5e00-a1601c7babae', 'system-minimal'),
+
+       ('0a999ec9-36ff-bd00-de9d-84b94a0ea38a', 1, '2022-09-21 08:48:05', 'anonymous', '2022-09-21 08:48:05', null, null,
+        null, '6c68191f-5fc0-abbb-055d-3bfe140524ff', 'ab5da3b3-7445-9cd7-fcf2-23b02a3c32ab', 'CustomerRole'),
+       ('86fa6087-7a3c-aac3-f590-41c900737c60', 1, '2022-09-21 08:48:05', 'anonymous', '2022-09-21 08:48:05', null, null,
+        null, '6c68191f-5fc0-abbb-055d-3bfe140524ff', 'eec4311d-15ef-0706-5e00-a1601c7babae', 'system-minimal'),
+
+       ('d7ac34eb-2f09-665b-2b72-6635b8ce185b', 1, '2022-09-21 08:48:05', 'anonymous', '2022-09-21 08:48:05', null, null,
+        null, '6d4b036f-7528-7f8e-d67c-c25f6ec30b33', 'ab5da3b3-7445-9cd7-fcf2-23b02a3c32ab', 'CustomerRole'),
+       ('8b2abcc7-6b4e-d462-5746-00d6d1627077', 1, '2022-09-21 08:48:05', 'anonymous', '2022-09-21 08:48:05', null, null,
+        null, '6d4b036f-7528-7f8e-d67c-c25f6ec30b33', 'eec4311d-15ef-0706-5e00-a1601c7babae', 'system-minimal');
 
 -- fill Genres
 insert into EXCHANGE_GENRE
