@@ -8,10 +8,9 @@ import java.util.Arrays;
 public class ExchangeWebTestContainer extends TestContainer {
 
     public ExchangeWebTestContainer() {
-        appComponents = new ArrayList<>(Arrays.asList(
-                "com.haulmont.cuba"
-                // add CUBA add-ons and custom app components here
-        ));
+        appComponents = Arrays.asList(
+                "com.haulmont.cuba",
+                "com.haulmont.reports");
         appPropertiesFiles = Arrays.asList(
                 // List the files defined in your web.xml
                 // in appPropertiesConfig context parameter of the web module
