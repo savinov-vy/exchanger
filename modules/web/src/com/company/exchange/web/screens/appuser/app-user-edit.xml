@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://appUserEdit.caption"
-        focusComponent="form"
-        messagesPack="com.company.exchange.web.screens.appuser">
-    <data>
-        <instance id="appUserDc"
-                  class="com.company.exchange.entity.AppUser"
-                  view="appUser-view-custom">
-            <loader/>
-        </instance>
-    </data>
-    <dialogMode height="600"
-                width="800"/>
-    <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="appUserDc">
-            <column width="350px">
-                <textField id="loginField" property="login"/>
-                <textField id="nameField" property="name"/>
-                <textField id="firstNameField" property="firstName"/>
-                <textField id="lastNameField" property="lastName"/>
-                <textField id="middleNameField" property="middleName"/>
-                <textField id="emailField" property="email"/>
-            </column>
-        </form>
-        <hbox id="editActions" spacing="true">
-            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
-            <button id="closeBtn" action="windowClose"/>
-        </hbox>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd"
+        class="com.company.exchange.web.screens.appuser.AppUserEdit"
+        messagesPack="com.company.exchange.web.screens.appuser"
+        extends="com/haulmont/cuba/gui/app/security/user/edit/user-edit.xml">
+    <dsContext>
+        <datasource id="userDs" class="com.company.exchange.entity.AppUser" view="appUser-view-custom"/>
+    </dsContext>
+    <layout>
+        <groupBox id="propertiesBox">
+            <grid id="propertiesGrid" width="AUTO">
+                <rows>
+                    <row id="propertiesRow">
+                        <fieldGroup id="fieldGroupLeft">
+                            <column width="350px">
+                                <field id="lastName" ext:index="3"/>
+                                <field id="firstName" ext:index="4"/>
+                                <field id="middleName" ext:index="5"/>
+                            </column>
+                        </fieldGroup>
+                    </row>
+                </rows>
+            </grid>
+        </groupBox>
     </layout>
 </window>

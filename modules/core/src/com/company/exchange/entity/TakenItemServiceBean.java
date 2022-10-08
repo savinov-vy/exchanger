@@ -59,5 +59,4 @@ public class TakenItemServiceBean implements TakenItemService {
             dataManager.commit(commitContext);
         }
     }
-
 }
