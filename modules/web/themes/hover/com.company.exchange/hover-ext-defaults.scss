@@ -1,1 +1,16 @@
 /* Override global theme constants or define new ones here */
+$v-app-loading-text: "exchanger is loading...";
+
+$exchanger-light-color: #badff3;
+$exchanger-main-color: #00a1d9;
+$exchanger-main-bg: #f1faff;
+
+$v-focus-color: $exchanger-main-color;
+$v-focus-style: $v-focus-color;
+$v-selection-color: $exchanger-main-color;
+$v-border: 1px solid $exchanger-light-color;
+$v-friendly-color: $exchanger-main-color;
+$v-font-color: $exchanger-main-color;
+$v-button-font-color: #000;
+
+$cuba-login-btn-background-color: #0093cf;
