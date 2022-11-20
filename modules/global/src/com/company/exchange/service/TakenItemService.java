@@ -6,9 +6,9 @@ import com.company.exchange.entity.TakenItem;
 public interface TakenItemService {
     String NAME = "exchange_TakenItemService";
 
-    TakenItem setManagerTaken(Disk disk);
+    void retrieve(Disk disk);
 
-    TakenItem setCurrentUserTaken(Disk disk);
+    void take(Disk disk);
 
-    void setDeleteBeforeTakenItem(Disk disk);
+    TakenItem createNewManagerTaken(Disk disk);
 }

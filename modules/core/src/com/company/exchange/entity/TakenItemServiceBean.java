@@ -2,16 +2,14 @@ package com.company.exchange.entity;
 
 import com.company.exchange.service.TakenItemService;
 import com.company.exchange.service.UserService;
-import com.haulmont.cuba.core.global.CommitContext;
-import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.TransactionalDataManager;
 import com.haulmont.cuba.core.global.Metadata;
-import com.haulmont.cuba.core.global.UserSessionSource;
-import com.haulmont.cuba.core.global.View;
+import com.haulmont.cuba.core.global.TimeSource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.Date;
-import java.util.List;
 
 @Service(TakenItemService.NAME)
 public class TakenItemServiceBean implements TakenItemService {
@@ -20,12 +18,12 @@ public class TakenItemServiceBean implements TakenItemService {
     @Inject
     private UserService userService;
     @Inject
-    private UserSessionSource userSessionSource;
+    private TimeSource timeSource;
     @Inject
-    private DataManager dataManager;
+    private TransactionalDataManager transactionalDataManager;
 
     @Override
-    public TakenItem setManagerTaken(Disk disk) {
+    public TakenItem createNewManagerTaken(Disk disk) {
         AppUser manager = userService.getOneManager();
         TakenItem takenItem = metadata.create(TakenItem.class);
         takenItem.setUser(manager);
@@ -34,29 +32,54 @@ public class TakenItemServiceBean implements TakenItemService {
     }
 
     @Override
-    public TakenItem setCurrentUserTaken(Disk disk) {
-        AppUser current = (AppUser) userSessionSource.getUserSession().getUser();
-        TakenItem takenItem = metadata.create(TakenItem.class);
-        takenItem.setUser(current);
-        takenItem.setDisk(disk);
-        return takenItem;
+    public void retrieve(Disk disk) {
+        TakenItem newTakenItem = diskToManager(disk);
+        exchange(preparedToSoftDeleteTaken(disk), newTakenItem);
     }
 
-    @Override
-    public void setDeleteBeforeTakenItem(Disk disk) {
-        Date newTakenItemCreated = disk.getTakenItem().getCreateTs();
-        List<TakenItem> list = dataManager.load(TakenItem.class)
-                .query("select e from exchange_TakenItem e where e.disk=:disk " +
-                        "and e.createTs < :newTakenItemCreated")
-                .parameter("disk", disk)
-                .parameter("newTakenItemCreated", newTakenItemCreated)
-                .view(View.BASE)
-                .list();
+    private TakenItem diskToManager(Disk disk) {
+        AppUser manager = userService.getOneManager();
+        return createTakenItem(disk, manager);
+    }
 
-        if (!list.isEmpty()) {
-            CommitContext commitContext = new CommitContext();
-            commitContext.setRemoveInstances(list);
-            dataManager.commit(commitContext);
-        }
+
+    @Override
+    public void take(Disk disk) {
+        TakenItem newTakenItem = diskToCurrentUser(disk);
+        exchange(preparedToSoftDeleteTaken(disk), newTakenItem);
+    }
+
+    private TakenItem preparedToSoftDeleteTaken(Disk disk) {
+        String loginCurrentUser = userService.currentUser().getLoginLowerCase();
+        Date now = timeSource.currentTimestamp();
+        TakenItem before = disk.getTakenItem();
+        before.setDeleteTs(now);
+        before.setDeletedBy(loginCurrentUser);
+        return before;
+    }
+
+    private TakenItem diskToCurrentUser(Disk disk) {
+        AppUser current = userService.currentUser();
+        return createTakenItem(disk, current);
+    }
+
+    private TakenItem createTakenItem(Disk disk, AppUser user) {
+        TakenItem newTakenItem = metadata.create(TakenItem.class);
+        String loginCurrentUser = userService.currentUser().getLoginLowerCase();
+        Date now = timeSource.currentTimestamp();
+
+        newTakenItem.setUser(user);
+        newTakenItem.setDisk(disk);
+        newTakenItem.setCreatedBy(loginCurrentUser);
+        newTakenItem.setCreateTs(now);
+        newTakenItem.setUpdatedBy(loginCurrentUser);
+        newTakenItem.setUpdateTs(now);
+        return newTakenItem;
+    }
+
+    @Transactional
+    protected void exchange(TakenItem toSoftDelete, TakenItem newTakenItem) {
+        transactionalDataManager.save(toSoftDelete);
+        transactionalDataManager.save(newTakenItem);
     }
 }

@@ -61,5 +61,4 @@ public class AppLoginScreen extends LoginScreen {
             }
         }
     }
-
 }

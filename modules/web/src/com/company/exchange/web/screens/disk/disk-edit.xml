@@ -35,8 +35,8 @@
                     <button id="takeBtn"
                             caption="msg://btn.takeDisk"
                             stylename="primary"/>
-                    <button id="giveBtn"
-                            caption="msg://btn.giveDisk"
+                    <button id="retrieveBtn"
+                            caption="msg://btn.retrieveDisk"
                             stylename="friendly"
                             css="margin-right: 0"/>
                 </buttonsPanel>

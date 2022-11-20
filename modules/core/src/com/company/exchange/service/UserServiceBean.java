@@ -9,6 +9,7 @@ import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.PasswordEncryption;
+import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.core.global.ViewBuilder;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class UserServiceBean implements UserService {
     private Metadata metadata;
     @Inject
     private PasswordEncryption passwordEncryption;
+    @Inject
+    private UserSessionSource userSessionSource;
 
     public UserServiceBean(Persistence persistence) {
         this.persistence = persistence;
@@ -48,7 +51,9 @@ public class UserServiceBean implements UserService {
     @Override
     public AppUser getOneManager() {
         List<AppUser> managers = getUsersByRoleName(ManagerRole.NAME);
-        return !managers.isEmpty() ? managers.get(0) : null;
+        return managers.stream()
+                .findAny()
+                .orElse(null);
     }
 
     @Override
@@ -67,5 +72,10 @@ public class UserServiceBean implements UserService {
         user.setPassword(passwordEncryption.getPasswordHash(user.getId(), password));
         user.setGroupNames(AppConstants.DEFAULT_GROUP);
         return user;
+    }
+
+    @Override
+    public AppUser currentUser() {
+        return (AppUser) userSessionSource.getUserSession().getUser();
     }
 }
