@@ -13,7 +13,5 @@ public interface UserService {
 
     List<AppUser> getUsersByRoleName(String roleName);
 
-    AppUser createUserOf(String login, String password);
-
     AppUser currentUser();
 }

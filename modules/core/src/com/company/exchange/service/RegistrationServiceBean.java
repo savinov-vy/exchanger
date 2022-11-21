@@ -17,7 +17,6 @@ import static com.company.exchange.constant.AppConstants.IS_SUCCESSFULLY_SAVE;
 
 @Service(RegistrationService.NAME)
 public class RegistrationServiceBean implements RegistrationService {
-
     private static final Logger log = LoggerFactory.getLogger(RegistrationServiceBean.class);
 
     @Inject
@@ -26,25 +25,25 @@ public class RegistrationServiceBean implements RegistrationService {
     private Metadata metadata;
     @Inject
     private RoleService roleService;
-    @Inject
-    private UserService userService;
 
     @Override
-    public boolean registerUser(String login, String password) {
-        AppUser newUser = userService.createUserOf(login, password);
-        Role customerRole = roleService.getRoleByName(CustomerRole.NAME);
-
-        UserRole userRole = metadata.create(UserRole.class);
-        userRole.setUser(newUser);
-        userRole.setRoleName(CustomerRole.NAME);
-        userRole.setRole(customerRole);
-
+    public boolean save(AppUser newUser) {
+        UserRole newUserRole = createNewUserRole(newUser);
         try {
-            dataManager.commit(new CommitContext(newUser, userRole));
+            dataManager.commit(new CommitContext(newUser, newUserRole));
         } catch (Exception e) {
             log.warn("Created new user not successfully. Exception with message: " + e.getMessage());
             return !IS_SUCCESSFULLY_SAVE;
         }
         return IS_SUCCESSFULLY_SAVE;
+    }
+
+    private UserRole createNewUserRole(AppUser newUser) {
+        Role customerRole = roleService.getRoleByName(CustomerRole.NAME);
+        UserRole userRole = metadata.create(UserRole.class);
+        userRole.setUser(newUser);
+        userRole.setRoleName(CustomerRole.NAME);
+        userRole.setRole(customerRole);
+        return userRole;
     }
 }

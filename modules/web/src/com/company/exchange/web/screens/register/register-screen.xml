@@ -9,6 +9,26 @@
             <columns count="2"/>
             <rows>
                 <row>
+                    <label value="lastName" align="MIDDLE_LEFT"/>
+                    <textField id="lastNameField"
+                               required="true"
+                               property="lastName">
+                    </textField>
+                </row>
+                <row>
+                    <label value="firstName" align="MIDDLE_LEFT"/>
+                    <textField id="firstNameField"
+                               required="true"
+                               property="firstName">
+                    </textField>
+                </row>
+                <row>
+                    <label value="middleName" align="MIDDLE_LEFT"/>
+                    <textField id="middleNameField"
+                               property="middleName">
+                    </textField>
+                </row>
+                <row>
                     <label value="Login" align="MIDDLE_LEFT"/>
                     <textField id="loginField"
                                required="true"

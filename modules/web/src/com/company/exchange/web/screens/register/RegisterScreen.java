@@ -1,8 +1,11 @@
 package com.company.exchange.web.screens.register;
 
+import com.company.exchange.constant.AppConstants;
 import com.company.exchange.entity.AppUser;
 import com.company.exchange.service.RegistrationService;
 import com.company.exchange.service.UserService;
+import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.core.global.PasswordEncryption;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.components.Button;
 import com.haulmont.cuba.gui.components.GridLayout;
@@ -36,7 +39,15 @@ public class RegisterScreen extends Screen {
     @Inject
     private PasswordField passwordField;
     @Inject
+    private TextField<String> lastNameField;
+    @Inject
+    private TextField<String> firstNameField;
+    @Inject
+    private TextField<String> middleNameField;
+    @Inject
     private PasswordField confirmPasswordField;
+    @Inject
+    private PasswordEncryption passwordEncryption;
     @Inject
     private RegistrationService registrationService;
     @Inject
@@ -49,52 +60,13 @@ public class RegisterScreen extends Screen {
     private MessageBundle messageBundle;
     @Inject
     private UserService userService;
+    @Inject
+    private Metadata metadata;
 
     @Subscribe
     public void onInit(InitEvent event) {
         loginField.addValidator(this::loginExistValidator);
         confirmPasswordField.addValidator(this::passwordEqualsConfirmPasswordValidator);
-    }
-
-    @Subscribe("okBtn")
-    public void onOkBtnClick(Button.ClickEvent event) {
-        if (isValidFillRegisterForm()) {
-            registrationUser();
-        }
-    }
-
-    @Subscribe("cancelBtn")
-    public void onCancelBtnClick(Button.ClickEvent event) {
-        close(WINDOW_CLOSE_ACTION);
-    }
-
-    private boolean isValidFillRegisterForm() {
-        ValidationErrors errors = screenValidation.validateUiComponents(gridRegister);
-        if (!errors.isEmpty()) {
-            log.warn("ValidationErrors not empty: {}", errors);
-            screenValidation.showValidationErrors(this, errors);
-            return false;
-        }
-        return true;
-    }
-
-    private void registrationUser() {
-        String login = getLogin();
-        boolean savedSuccess = registrationService.registerUser(login, getPassword());
-        if (savedSuccess) {
-            log.info("Created new user {}", login);
-            showNotification(HUMANIZED, "register.createdNewUser.description", login);
-            close(WINDOW_COMMIT_AND_CLOSE_ACTION);
-        } else {
-            showNotification(ERROR, "register.userNotSave.description", login);
-        }
-    }
-
-    private void showNotification(Notifications.NotificationType humanized, String descriptionKey, String param) {
-        notifications.create(humanized)
-                .withCaption(messageBundle.formatMessage("register.notification.caption"))
-                .withDescription(messageBundle.formatMessage(descriptionKey, param))
-                .show();
     }
 
     private void loginExistValidator(String login) {
@@ -111,11 +83,75 @@ public class RegisterScreen extends Screen {
         }
     }
 
+    @Subscribe("okBtn")
+    public void onOkBtnClick(Button.ClickEvent event) {
+        if (isValidFillRegisterForm()) {
+            registrationUser();
+        }
+    }
+
+    private boolean isValidFillRegisterForm() {
+        ValidationErrors errors = screenValidation.validateUiComponents(gridRegister);
+        if (!errors.isEmpty()) {
+            log.warn("ValidationErrors not empty: {}", errors);
+            screenValidation.showValidationErrors(this, errors);
+            return false;
+        }
+        return true;
+    }
+
+    private void registrationUser() {
+        AppUser newUser = createUser();
+        boolean savedSuccess = registrationService.save(newUser);
+        if (savedSuccess) {
+            log.info("Created new user {}", newUser.getLogin());
+            showNotification(HUMANIZED, "register.createdNewUser.description", newUser.getLogin());
+            close(WINDOW_COMMIT_AND_CLOSE_ACTION);
+        } else {
+            showNotification(ERROR, "register.userNotSave.description", newUser.getLogin());
+        }
+    }
+
+    private AppUser createUser() {
+        AppUser newUser = metadata.create(AppUser.class);
+        newUser.setLogin(getLogin());
+        newUser.setPassword(passwordEncryption.getPasswordHash(newUser.getId(), getPassword()));
+        newUser.setLastName(getLastName());
+        newUser.setFirstName(getFirstName());
+        newUser.setMiddleName(getMiddleName());
+        newUser.setGroupNames(AppConstants.DEFAULT_GROUP);
+        return newUser;
+    }
+
+    private void showNotification(Notifications.NotificationType humanized, String descriptionKey, String param) {
+        notifications.create(humanized)
+                .withCaption(messageBundle.formatMessage("register.notification.caption"))
+                .withDescription(messageBundle.formatMessage(descriptionKey, param))
+                .show();
+    }
+
+    @Subscribe("cancelBtn")
+    public void onCancelBtnClick(Button.ClickEvent event) {
+        close(WINDOW_CLOSE_ACTION);
+    }
+
     public String getLogin() {
         return loginField.getValue();
     }
 
     public String getPassword() {
         return passwordField.getValue();
+    }
+
+    public String getLastName() {
+        return lastNameField.getValue();
+    }
+
+    public String getFirstName() {
+        return firstNameField.getValue();
+    }
+
+    public String getMiddleName() {
+        return middleNameField.getValue();
     }
 }

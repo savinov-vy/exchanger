@@ -1,7 +1,9 @@
 package com.company.exchange.service;
 
+import com.company.exchange.entity.AppUser;
+
 public interface RegistrationService {
     String NAME = "exchange_RegistrationService";
 
-    boolean registerUser(String login, String password);
+    boolean save(AppUser newUser);
 }
