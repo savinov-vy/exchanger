@@ -86,9 +86,9 @@ public class DiskEdit extends StandardEditor<Disk> {
                 .withCaption(messages.getMainMessage(AppConstants.WARNING_CAPTION))
                 .withMessage(formatMessage)
                 .withActions(
-                        new DialogAction(DialogAction.Type.YES).withHandler(e -> {
+                        new DialogAction(DialogAction.Type.YES).withHandler(handler -> {
                                     exchange.accept(editedDisk);
-                                    close(StandardOutcome.COMMIT);
+                                    close(WINDOW_COMMIT_AND_CLOSE_ACTION);
                                 }
                         ),
                         new DialogAction(DialogAction.Type.CANCEL))
