@@ -12,11 +12,6 @@
         <property name="genres" view="_minimal"/>
     </view>
     <view entity="exchange_Genre" name="genre-view" extends="_local"/>
-    <view entity="exchange_AppUser" name="appUser-view-custom" extends="_minimal">
-        <property name="firstName"/>
-        <property name="lastName"/>
-        <property name="middleName"/>
-    </view>
     <view entity="exchange_TakenItem" name="takenItem-view-diskEdit" extends="_local">
         <property name="user" view="_local"/>
         <property name="disk" view="_local"/>

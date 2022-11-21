@@ -5,7 +5,7 @@
         messagesPack="com.company.exchange.web.screens.appuser"
         extends="com/haulmont/cuba/gui/app/security/user/edit/user-edit.xml">
     <dsContext>
-        <datasource id="userDs" class="com.company.exchange.entity.AppUser" view="appUser-view-custom"/>
+        <datasource id="userDs" class="com.company.exchange.entity.AppUser"/>
     </dsContext>
     <layout>
         <groupBox id="propertiesBox">

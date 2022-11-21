@@ -7,7 +7,7 @@
     <data readOnly="true">
         <collection id="appUsersDc"
                     class="com.company.exchange.entity.AppUser"
-                    view="appUser-view-custom">
+                    view="_local">
             <loader id="appUsersDl">
                 <query>
                     <![CDATA[select e from exchange_AppUser e]]>
