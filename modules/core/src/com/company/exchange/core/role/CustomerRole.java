@@ -1,5 +1,6 @@
 package com.company.exchange.core.role;
 
+import com.company.exchange.constant.AppConstants;
 import com.company.exchange.entity.Disk;
 import com.company.exchange.entity.Genre;
 import com.company.exchange.entity.TakenItem;
@@ -16,7 +17,7 @@ import com.haulmont.cuba.security.role.ScreenPermissionsContainer;
 
 @Role(name = CustomerRole.NAME)
 public class CustomerRole extends AnnotatedRoleDefinition {
-    public final static String NAME = "CustomerRole";
+    public final static String NAME = AppConstants.CUSTOMER_ROLE;
 
     @ScreenAccess(screenIds = {"application-exchange", "exchange_Disk.browse", "mainWindow", "main", "exchange_Disk.edit", "exchange_RegisterScreen"})
     @Override

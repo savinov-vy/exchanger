@@ -1,5 +1,6 @@
 package com.company.exchange.core.role;
 
+import com.company.exchange.constant.AppConstants;
 import com.company.exchange.entity.AppUser;
 import com.company.exchange.entity.Disk;
 import com.company.exchange.entity.Genre;
@@ -17,7 +18,7 @@ import com.haulmont.cuba.security.role.ScreenPermissionsContainer;
 
 @Role(name = ManagerRole.NAME)
 public class ManagerRole extends AnnotatedRoleDefinition {
-    public final static String NAME = "ManagerRole";
+    public final static String NAME = AppConstants.MANAGER_ROLE;
 
     @ScreenAccess(screenIds = {"exchange_AppUser.browse", "application-exchange", "exchange_Disk.browse", "exchange_Genre.browse", "mainWindow", "exchange_AppUser.edit", "exchange_Disk.edit", "exchange_Genre.edit", "sec$User.edit"})
     @Override

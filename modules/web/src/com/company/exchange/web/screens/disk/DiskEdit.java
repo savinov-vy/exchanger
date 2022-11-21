@@ -5,13 +5,16 @@ import com.company.exchange.service.TakenItemService;
 import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.components.Button;
+import com.haulmont.cuba.gui.components.ButtonsPanel;
 import com.haulmont.cuba.gui.components.DialogAction;
 import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.exchange.entity.Disk;
 import com.company.exchange.constant.AppConstants;
+import com.haulmont.cuba.security.global.UserSession;
 
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.function.Consumer;
 
 @UiController("exchange_Disk.edit")
@@ -27,6 +30,18 @@ public class DiskEdit extends StandardEditor<Disk> {
     private Messages messages;
     @Inject
     private DataContext dataContext;
+    @Inject
+    private UserSession userSession;
+    @Inject
+    private MessageBundle messageBundle;
+    @Inject
+    private Button closeBtn;
+    @Inject
+    private Button commitAndCloseBtn;
+    @Inject
+    private ButtonsPanel genresButtonsPanel;
+    @Inject
+    private Button retrieveBtn;
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<Disk> event) {
@@ -34,6 +49,19 @@ public class DiskEdit extends StandardEditor<Disk> {
         TakenItem managerTakenItem = takenItemService.createNewManagerTaken(newDisk);
         TakenItem hasManager = dataContext.merge(managerTakenItem);
         newDisk.setTakenItem(hasManager);
+    }
+
+    @Subscribe
+    public void onAfterShow(AfterShowEvent event) {
+        Collection<String> roles = userSession.getRoles();
+        if (roles.contains(AppConstants.CUSTOMER_ROLE)) {
+            String description = messageBundle.getMessage("closeBtnCaption");
+            commitAndCloseBtn.setVisible(false);
+            genresButtonsPanel.setVisible(false);
+            closeBtn.setCaption(description);
+        } else if (roles.contains(AppConstants.MANAGER_ROLE)) {
+            retrieveBtn.setVisible(false);
+        }
     }
 
     @Subscribe("takeBtn")

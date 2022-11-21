@@ -51,14 +51,14 @@
                 <columns>
                     <column id="name" caption="msg://genreName"/>
                 </columns>
-                <buttonsPanel>
+                <buttonsPanel id="genresButtonsPanel">
                     <button action="genreTable.add"/>
                     <button action="genreTable.exclude"/>
                 </buttonsPanel>
             </table>
         </groupBox>
         <hbox id="editActions" spacing="true">
-            <button id="DiskEditCommitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
     </layout>
