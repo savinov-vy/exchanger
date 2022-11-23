@@ -9,6 +9,7 @@
               width="100%">
             <cssLayout id="sideMenuPanel"
                        height="100%"
+                       width="250px"
                        stylename="c-sidemenu-panel">
                 <button id="mobileMenuButton"
                         caption="mainMsg://app.menu"
