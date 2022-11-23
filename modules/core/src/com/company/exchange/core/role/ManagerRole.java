@@ -40,7 +40,8 @@ public class ManagerRole extends AnnotatedRoleDefinition {
     @EntityAttributeAccess(entityClass = TakenItem.class, modify = {"user", "disk"})
     @EntityAttributeAccess(entityClass = Disk.class, modify = {"genres", "description", "name"}, view = "takenItem")
     @EntityAttributeAccess(entityClass = Genre.class, modify = {"name", "disk"})
-    @EntityAttributeAccess(entityClass = AppUser.class, modify = "active", view = {"login", "name", "firstName", "lastName"})
+    @EntityAttributeAccess(entityClass = AppUser.class, modify = "active", view = {"login", "name", "firstName",
+            "lastName", "middleName", "loginLowerCase", "email", "timeZone"})
     @Override
     public EntityAttributePermissionsContainer entityAttributePermissions() {
         return super.entityAttributePermissions();

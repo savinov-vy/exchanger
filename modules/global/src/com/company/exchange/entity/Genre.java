@@ -25,7 +25,7 @@ public class Genre extends StandardEntity {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @JoinTable(name = "EXCHANGE_DISK_GENRE_LINK",
+    @JoinTable(name = "EXCHANGE_DISK2GENRE",
             joinColumns = @JoinColumn(name = "GENRE_ID"),
             inverseJoinColumns = @JoinColumn(name = "DISK_ID"))
     @ManyToMany

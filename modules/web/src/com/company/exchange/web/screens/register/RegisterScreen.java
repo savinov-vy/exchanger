@@ -119,6 +119,7 @@ public class RegisterScreen extends Screen {
         newUser.setLastName(getLastName());
         newUser.setFirstName(getFirstName());
         newUser.setMiddleName(getMiddleName());
+        newUser.setName(getFirstName() + " " + getLastName());
         newUser.setGroupNames(AppConstants.DEFAULT_GROUP);
         return newUser;
     }

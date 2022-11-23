@@ -24,7 +24,7 @@ insert into SEC_USER
  PASSWORD_ENCRYPTION, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO,
  ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
 values ('exchange_AppUser', '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', 1, '2022-09-15 08:47:08', 'admin',
-        '2022-09-15 08:47:08', null, null, null, 'manager@exchange.ru', 'manager@exchange.ru',
+        '2022-09-15 08:47:08', null, null, null, 'manager@mail.ru', 'manager@mail.ru',
         '$2a$10$Ar7oYWrypt5o9oVyqSWQ9en4EEqyXQX3BwyqK.7W9oWV6JSmNJq4O', 'bcrypt', 'Николай Гоголь', 'Николай', 'Гоголь',
         'Васильевич', null, null, 'ru', null, null, true, false, '0fa2b1a5-1d68-4d69-9fbd-dff348347f93', null, null,
         null);
@@ -34,9 +34,9 @@ insert into SEC_USER
  PASSWORD_ENCRYPTION, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO,
  ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
 values ('exchange_AppUser', '1d0b8579-054f-c301-f652-c70fa11d9614', 1, '2022-09-21 08:48:05', 'anonymous',
-        '2022-09-21 08:48:05', null, null, null, 'user1@mail.ru', 'user1@mail.ru',
-        '$2a$10$ooGW0lCIeECsv085DKCYMOyyo2FtsduLH6cxC88fIdvnTbK00K0Ym', 'bcrypt', null, null, null, null, null, null,
-        null, null, null, true, false, null, 'Customers', null, null);
+        '2022-09-21 08:48:05', null, null, null, 'user@mail.ru', 'user@mail.ru',
+        '$2a$10$ooGW0lCIeECsv085DKCYMOyyo2FtsduLH6cxC88fIdvnTbK00K0Ym', 'bcrypt', 'Александр Пушкин', 'Александр',
+        'Пушкин', 'Сергеевич', null, null, null, null, null, true, false, null, 'Customers', null, null);
 
 insert into SEC_USER
 (DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
@@ -44,8 +44,8 @@ insert into SEC_USER
  ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
 values ('exchange_AppUser', '6c68191f-5fc0-abbb-055d-3bfe140524ff', 1, '2022-09-21 08:48:25', 'anonymous',
         '2022-09-21 08:48:25', null, null, null, 'user2@mail.ru', 'user2@mail.ru',
-        '$2a$10$p79Shj2iv0xcnkZM9ADoiezxxbHQSdHMyYn0GcZFCq8IzwuebK2Uy', 'bcrypt', null, null, null, null, null, null,
-        null, null, null, true, false, null, 'Customers', null, null);
+        '$2a$10$p79Shj2iv0xcnkZM9ADoiezxxbHQSdHMyYn0GcZFCq8IzwuebK2Uy', 'bcrypt', 'Лев Толстой', 'Лев', 'Толстой',
+        'Николаевич', null, null, null, null, null, true, false, null, 'Customers', null, null);
 
 insert into SEC_USER
 (DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
@@ -53,8 +53,8 @@ insert into SEC_USER
  ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, GROUP_NAMES, IP_MASK, SYS_TENANT_ID)
 values ('exchange_AppUser', '6d4b036f-7528-7f8e-d67c-c25f6ec30b33', 1, '2022-09-21 08:48:48', 'anonymous',
         '2022-09-21 08:48:48', null, null, null, 'user3@mail.ru', 'user3@mail.ru',
-        '$2a$10$752H79iUK7fvOGw/SftMOuqgvwZpEMC11Y4hhiFv9qSh9IVdxXxV.', 'bcrypt', null, null, null, null, null, null,
-        null, null, null, true, false, null, 'Customers', null, null);
+        '$2a$10$752H79iUK7fvOGw/SftMOuqgvwZpEMC11Y4hhiFv9qSh9IVdxXxV.', 'bcrypt', 'Михайл Лермонтов', 'Михаил',
+        'Лермонтов', 'Юрьевич', null, null, null, null, null, true, false, null, 'Customers', null, null);
 
 insert into SEC_USER_ROLE
 (ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID, ROLE_NAME)
@@ -105,29 +105,24 @@ values ('1a3ed5bb-8c7e-0737-7e06-65ad3226b439', 1, '2022-09-13 10:01:50', 'admin
 insert into EXCHANGE_DISK
 (ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, DESCRIPTION)
 values ('6322de32-1d32-4c02-906f-275cfc38b7f5', 1, '2022-09-14 12:01:37', 'admin', '2022-09-14 12:11:54', null, null,
-        null,
-        'История науки', 'Эволюция становления науки до того вида, который нам известен.'),
+        null, 'История науки', 'Эволюция становления науки до того вида, который нам известен.'),
 
        ('df9299eb-5c44-45e5-81d1-c9dcb8662e6d', 1, '2022-09-14 12:10:35', 'admin', '2022-09-14 12:10:35', null, null,
-        null,
-        'Каникулы строгого режима', 'О приключениях в детском лагере сбежавших из мест заключения вожатых.'),
+        null, 'Каникулы строгого режима', 'О приключениях в детском лагере сбежавших из мест заключения вожатых.'),
 
        ('d987529a-43f0-b1ef-2337-8413051b145d', 1, '2022-09-14 11:57:28', 'admin', '2022-09-14 12:04:28', null, null,
-        null,
-        'Колобок', 'Русская народная сказка. Прародитель смешариков.'),
+        null, 'Колобок', 'Русская народная сказка. Прародитель смешариков.'),
 
        ('ac0c653a-9a23-e152-861a-f5c6ec166377', 1, '2022-09-14 11:55:42', 'admin', '2022-09-14 11:55:42', null, null,
-        null,
-        'Терминатор',
+        null, 'Терминатор',
         'Война людей и машин. Авторская экранизация одной из основных проблем современного человечества.'),
 
        ('a1f45f9f-fe7c-cfbe-f57b-95a4703e031e', 1, '2022-09-14 12:03:48', 'admin', '2022-09-14 12:03:48', null, null,
-        null,
-        'Эквилибриум', 'Остатки человечества пережившие атомную войну решили, что причина всех ' ||
+        null, 'Эквилибриум', 'Остатки человечества пережившие атомную войну решили, что причина всех ' ||
                        'бед - человеческие эмоции. Они начинают строить новый мир - без эмоций');
 
 -- fill table genre - movie link
-insert into EXCHANGE_DISK_GENRE_LINK
+insert into EXCHANGE_DISK2GENRE
     (GENRE_ID, DISK_ID)
 VALUES ('09a5b172-738c-f98b-e92e-160223ac2c9b', '6322de32-1d32-4c02-906f-275cfc38b7f5'),
        ('88eab711-dbcb-7e27-fefb-43a4db0db86d', 'df9299eb-5c44-45e5-81d1-c9dcb8662e6d'),

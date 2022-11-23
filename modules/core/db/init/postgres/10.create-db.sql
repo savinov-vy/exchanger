@@ -48,13 +48,13 @@ create table EXCHANGE_GENRE (
     primary key (ID)
 )^
 -- end EXCHANGE_GENRE
--- begin EXCHANGE_DISK_GENRE_LINK
-create table EXCHANGE_DISK_GENRE_LINK (
+-- begin EXCHANGE_DISK2GENRE
+create table EXCHANGE_DISK2GENRE (
     GENRE_ID uuid,
     DISK_ID uuid,
     primary key (GENRE_ID, DISK_ID)
 )^
--- end EXCHANGE_DISK_GENRE_LINK
+-- end EXCHANGE_DISK2GENRE
 -- begin SEC_USER
 alter table SEC_USER add column DTYPE varchar(31) ^
 update SEC_USER set DTYPE = 'exchange_AppUser' where DTYPE is null ^

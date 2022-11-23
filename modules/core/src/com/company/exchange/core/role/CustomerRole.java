@@ -1,6 +1,6 @@
 package com.company.exchange.core.role;
 
-import com.company.exchange.constant.AppConstants;
+import com.company.exchange.entity.AppUser;
 import com.company.exchange.entity.Disk;
 import com.company.exchange.entity.Genre;
 import com.company.exchange.entity.TakenItem;
@@ -17,7 +17,7 @@ import com.haulmont.cuba.security.role.ScreenPermissionsContainer;
 
 @Role(name = CustomerRole.NAME)
 public class CustomerRole extends AnnotatedRoleDefinition {
-    public final static String NAME = AppConstants.CUSTOMER_ROLE;
+    public final static String NAME = "CustomerRole";
 
     @ScreenAccess(screenIds = {"application-exchange", "exchange_Disk.browse", "mainWindow", "main",
             "exchange_Disk.edit", "exchange_RegisterScreen"})
@@ -26,6 +26,7 @@ public class CustomerRole extends AnnotatedRoleDefinition {
         return super.screenPermissions();
     }
 
+    @EntityAccess(entityClass = AppUser.class, operations = {EntityOp.READ, EntityOp.CREATE})
     @EntityAccess(entityClass = Disk.class, operations = {EntityOp.UPDATE, EntityOp.READ})
     @EntityAccess(entityClass = User.class, operations = EntityOp.READ)
     @EntityAccess(entityClass = TakenItem.class, operations = {EntityOp.READ, EntityOp.UPDATE, EntityOp.CREATE})
@@ -35,6 +36,8 @@ public class CustomerRole extends AnnotatedRoleDefinition {
         return super.entityPermissions();
     }
 
+    @EntityAttributeAccess(entityClass = AppUser.class, view = {"firstName", "lastName", "middleName", "name",
+            "language", "timeZone", "login", "loginLowerCase"})
     @EntityAttributeAccess(entityClass = User.class, view = {"login", "name", "firstName", "lastName", "middleName"})
     @EntityAttributeAccess(entityClass = TakenItem.class, modify = "user", view = "disk")
     @EntityAttributeAccess(entityClass = Genre.class, view = {"name", "disk"})

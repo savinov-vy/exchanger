@@ -31,7 +31,7 @@ public class Disk extends StandardEntity {
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
-    @JoinTable(name = "EXCHANGE_DISK_GENRE_LINK",
+    @JoinTable(name = "EXCHANGE_DISK2GENRE",
             joinColumns = @JoinColumn(name = "DISK_ID"),
             inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
     @OnDelete(DeletePolicy.UNLINK)
