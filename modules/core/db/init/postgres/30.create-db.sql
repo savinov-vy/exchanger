@@ -26,7 +26,7 @@ insert into SEC_USER
 values ('exchange_AppUser', '48557c0c-b65e-1ad1-2225-bf8f74d0b9c5', 1, '2022-09-15 08:47:08', 'admin',
         '2022-09-15 08:47:08', null, null, null, 'manager@mail.ru', 'manager@mail.ru',
         '$2a$10$Ar7oYWrypt5o9oVyqSWQ9en4EEqyXQX3BwyqK.7W9oWV6JSmNJq4O', 'bcrypt', 'Николай Гоголь', 'Николай', 'Гоголь',
-        'Васильевич', null, null, 'ru', null, null, true, false, '0fa2b1a5-1d68-4d69-9fbd-dff348347f93', null, null,
+        'Васильевич', null, null, 'ru', null, null, true, false, '0fa2b1a5-1d68-4d69-9fbd-dff348347f93', 'ManagerGroup', null,
         null);
 
 insert into SEC_USER
@@ -36,7 +36,7 @@ insert into SEC_USER
 values ('exchange_AppUser', '1d0b8579-054f-c301-f652-c70fa11d9614', 1, '2022-09-21 08:48:05', 'anonymous',
         '2022-09-21 08:48:05', null, null, null, 'user@mail.ru', 'user@mail.ru',
         '$2a$10$ooGW0lCIeECsv085DKCYMOyyo2FtsduLH6cxC88fIdvnTbK00K0Ym', 'bcrypt', 'Александр Пушкин', 'Александр',
-        'Пушкин', 'Сергеевич', null, null, null, null, null, true, false, null, 'Customers', null, null);
+        'Пушкин', 'Сергеевич', null, null, null, null, null, true, false, null, 'CustomerGroup', null, null);
 
 insert into SEC_USER
 (DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
@@ -45,7 +45,7 @@ insert into SEC_USER
 values ('exchange_AppUser', '6c68191f-5fc0-abbb-055d-3bfe140524ff', 1, '2022-09-21 08:48:25', 'anonymous',
         '2022-09-21 08:48:25', null, null, null, 'user2@mail.ru', 'user2@mail.ru',
         '$2a$10$p79Shj2iv0xcnkZM9ADoiezxxbHQSdHMyYn0GcZFCq8IzwuebK2Uy', 'bcrypt', 'Лев Толстой', 'Лев', 'Толстой',
-        'Николаевич', null, null, null, null, null, true, false, null, 'Customers', null, null);
+        'Николаевич', null, null, null, null, null, true, false, null, 'CustomerGroup', null, null);
 
 insert into SEC_USER
 (DTYPE, ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD,
@@ -54,7 +54,7 @@ insert into SEC_USER
 values ('exchange_AppUser', '6d4b036f-7528-7f8e-d67c-c25f6ec30b33', 1, '2022-09-21 08:48:48', 'anonymous',
         '2022-09-21 08:48:48', null, null, null, 'user3@mail.ru', 'user3@mail.ru',
         '$2a$10$752H79iUK7fvOGw/SftMOuqgvwZpEMC11Y4hhiFv9qSh9IVdxXxV.', 'bcrypt', 'Михайл Лермонтов', 'Михаил',
-        'Лермонтов', 'Юрьевич', null, null, null, null, null, true, false, null, 'Customers', null, null);
+        'Лермонтов', 'Юрьевич', null, null, null, null, null, true, false, null, 'CustomerGroup', null, null);
 
 insert into SEC_USER_ROLE
 (ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID, ROLE_NAME)
