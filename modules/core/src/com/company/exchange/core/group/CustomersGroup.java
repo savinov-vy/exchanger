@@ -19,10 +19,10 @@ public class CustomersGroup extends AnnotatedAccessGroupDefinition {
 
     @Constraint(operations = {EntityOp.CREATE, EntityOp.READ, EntityOp.UPDATE, EntityOp.DELETE})
     public boolean diskConstraints(Disk disk) {
-        AppUser user = disk.getTakenItem().getUser();
-        boolean diskHasManager = user.getGroupNames().equals("ManagerGroup");
+        AppUser ownerDisk = disk.getTakenItem().getUser();
+        boolean diskHasManager = ownerDisk.getGroupNames().equals("ManagerGroup");
         String currentUserLogin = session.getUserSession().getUser().getLogin();
-        boolean diskHasCurrentUser = user.getLogin().equals(currentUserLogin);
+        boolean diskHasCurrentUser = ownerDisk.getLogin().equals(currentUserLogin);
         return diskHasManager || diskHasCurrentUser;
     }
 }
