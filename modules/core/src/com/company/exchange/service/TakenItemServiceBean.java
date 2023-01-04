@@ -1,7 +1,8 @@
-package com.company.exchange.entity;
+package com.company.exchange.service;
 
-import com.company.exchange.service.TakenItemService;
-import com.company.exchange.service.UserService;
+import com.company.exchange.entity.AppUser;
+import com.company.exchange.entity.Disk;
+import com.company.exchange.entity.TakenItem;
 import com.haulmont.cuba.core.TransactionalDataManager;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.TimeSource;
@@ -42,20 +43,10 @@ public class TakenItemServiceBean implements TakenItemService {
         return createTakenItem(disk, manager);
     }
 
-
     @Override
     public void take(Disk disk) {
         TakenItem newTakenItem = diskToCurrentUser(disk);
         exchange(preparedToSoftDeleteTaken(disk), newTakenItem);
-    }
-
-    private TakenItem preparedToSoftDeleteTaken(Disk disk) {
-        String loginCurrentUser = userService.currentUser().getLoginLowerCase();
-        Date now = timeSource.currentTimestamp();
-        TakenItem before = disk.getTakenItem();
-        before.setDeleteTs(now);
-        before.setDeletedBy(loginCurrentUser);
-        return before;
     }
 
     private TakenItem diskToCurrentUser(Disk disk) {
@@ -75,6 +66,15 @@ public class TakenItemServiceBean implements TakenItemService {
         newTakenItem.setUpdatedBy(loginCurrentUser);
         newTakenItem.setUpdateTs(now);
         return newTakenItem;
+    }
+
+    private TakenItem preparedToSoftDeleteTaken(Disk disk) {
+        String loginCurrentUser = userService.currentUser().getLoginLowerCase();
+        Date now = timeSource.currentTimestamp();
+        TakenItem before = disk.getTakenItem();
+        before.setDeleteTs(now);
+        before.setDeletedBy(loginCurrentUser);
+        return before;
     }
 
     @Transactional

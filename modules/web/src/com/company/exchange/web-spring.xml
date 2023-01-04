@@ -15,6 +15,8 @@
                 <entry key="exchange_UserService" value="com.company.exchange.service.UserService"/>
                 <entry key="exchange_TakenItemService" value="com.company.exchange.service.TakenItemService"/>
                 <entry key="exchange_RoleService" value="com.company.exchange.service.RoleService"/>
+                <entry key="exchange_PopularDiskDsService"
+                       value="com.company.exchange.service.reports.PopularDiskDsService"/>
             </map>
         </property>
     </bean>
