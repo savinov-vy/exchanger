@@ -33,7 +33,7 @@ public class PopularDiskDsServiceBean implements PopularDiskDsService {
                     "where ti.delete_ts > #fromTs and ti.delete_ts <= #toTs " +
                     "and u.group_names = #groupName " +
                     "group by d.name " +
-                    "order by count(d) desc");
+                    "order by count(d) desc limit 3");
             query.setParameter("fromTs", fromTs);
             query.setParameter("toTs", toTs);
             query.setParameter("groupName", AppConstants.MANAGER_GROUP);
