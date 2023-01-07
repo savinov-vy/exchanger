@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @Service(PopularDiskDsService.NAME)
@@ -37,20 +36,19 @@ public class PopularDiskDsServiceBean implements PopularDiskDsService {
             query.setParameter("fromTs", fromTs);
             query.setParameter("toTs", toTs);
             query.setParameter("groupName", AppConstants.MANAGER_GROUP);
-            List<PopularDiskDsDto> resultList = resultsToActivityReportDtoList(query.getResultList());
-            return resultList;
+            return resultsToActivityReportDtoList(query.getResultList());
         });
     }
 
-    private List<PopularDiskDsDto> resultsToActivityReportDtoList(List resultList) {
-        List<PopularDiskDsDto> popularDiskDsDtoList = new ArrayList<>();
-        for (Iterator it = resultList.iterator(); it.hasNext(); ) {
-            PopularDiskDsDto popularDiskDsDto = metadata.create(PopularDiskDsDto.class);
-            Object[] row = (Object[]) it.next();
-            popularDiskDsDto.setPopularDiskName((String) row[0]);
-            popularDiskDsDto.setCountRent((Long) row[1]);
-            popularDiskDsDtoList.add(popularDiskDsDto);
+    private List<PopularDiskDsDto> resultsToActivityReportDtoList(List<?> resultList) {
+        List<PopularDiskDsDto> popularDiskDsReportLinesDto = new ArrayList<>();
+        for (Object obj : resultList) {
+            PopularDiskDsDto popularDiskDsLineDto = metadata.create(PopularDiskDsDto.class);
+            Object[] row = (Object[]) obj;
+            popularDiskDsLineDto.setPopularDiskName((String) row[0]);
+            popularDiskDsLineDto.setCountRent((Long) row[1]);
+            popularDiskDsReportLinesDto.add(popularDiskDsLineDto);
         }
-        return popularDiskDsDtoList;
+        return popularDiskDsReportLinesDto;
     }
 }
