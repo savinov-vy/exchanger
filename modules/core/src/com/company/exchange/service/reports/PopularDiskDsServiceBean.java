@@ -36,7 +36,7 @@ public class PopularDiskDsServiceBean implements PopularDiskDsService {
                     "order by count(d) desc limit 3");
             query.setParameter("fromTs", fromTs);
             query.setParameter("toTs", toTs);
-            query.setParameter("groupName", AppConstants.MANAGER_GROUP);
+            query.setParameter("groupName", AppConstants.CUSTOMER_GROUP);
             return resultsToActivityReportDtoList(query.getResultList());
         });
     }
