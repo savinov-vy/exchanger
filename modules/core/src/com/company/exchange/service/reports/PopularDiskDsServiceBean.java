@@ -26,7 +26,8 @@ public class PopularDiskDsServiceBean implements PopularDiskDsService {
 
     public List<PopularDiskDsDto> takenItemsByPeriod(Date fromTs, Date toTs) {
         return persistence.createTransaction().execute(em -> {
-            Query query = em.createNativeQuery("select d.name, count(d) from exchange_taken_item as ti " +
+            Query query = em.createNativeQuery(
+                    "select d.name, count(d) from exchange_taken_item as ti " +
                     "join exchange_disk as d on ti.disk_id = d.id " +
                     "join sec_user as u on ti.user_id = u.id " +
                     "where ti.delete_ts > #fromTs and ti.delete_ts <= #toTs " +
