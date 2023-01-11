@@ -9,27 +9,27 @@
             <columns count="2"/>
             <rows>
                 <row>
-                    <label value="lastName" align="MIDDLE_LEFT"/>
+                    <label align="MIDDLE_LEFT" value="msg://label.lastName"/>
                     <textField id="lastNameField"
                                required="true"
                                property="lastName">
                     </textField>
                 </row>
                 <row>
-                    <label value="firstName" align="MIDDLE_LEFT"/>
+                    <label align="MIDDLE_LEFT" value="msg://label.firstName"/>
                     <textField id="firstNameField"
                                required="true"
                                property="firstName">
                     </textField>
                 </row>
                 <row>
-                    <label value="middleName" align="MIDDLE_LEFT"/>
+                    <label align="MIDDLE_LEFT" value="msg://label.middleName"/>
                     <textField id="middleNameField"
                                property="middleName">
                     </textField>
                 </row>
                 <row>
-                    <label value="Login" align="MIDDLE_LEFT"/>
+                    <label align="MIDDLE_LEFT" value="msg://label.loginEmail"/>
                     <textField id="loginField"
                                required="true"
                                property="login">
@@ -39,7 +39,7 @@
                     </textField>
                 </row>
                 <row>
-                    <label value="Password" align="MIDDLE_LEFT"/>
+                    <label align="MIDDLE_LEFT" value="msg://label.password"/>
                     <passwordField id="passwordField"
                                    required="true">
                         <validators>
@@ -48,7 +48,8 @@
                     </passwordField>
                 </row>
                 <row>
-                    <label value="Password confirmation" align="MIDDLE_LEFT"/>
+                    <label value="msg://label.confirmPassword"
+                           align="MIDDLE_LEFT"/>
                     <passwordField id="confirmPasswordField"
                                    required="true"/>
                 </row>
