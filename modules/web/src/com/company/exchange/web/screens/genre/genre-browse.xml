@@ -31,6 +31,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="listPrintForm" type="listPrintForm"/>
             </actions>
             <columns>
                 <column id="name"/>
@@ -41,6 +42,7 @@
                 <button id="createBtn" action="genresTable.create"/>
                 <button id="editBtn" action="genresTable.edit"/>
                 <button id="removeBtn" action="genresTable.remove"/>
+                <button id="genreReportBtn" action="genresTable.listPrintForm"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
