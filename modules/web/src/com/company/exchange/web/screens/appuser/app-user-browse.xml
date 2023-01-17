@@ -45,6 +45,7 @@
                 <button id="createBtn" action="appUsersTable.create"/>
                 <button id="editBtn" action="appUsersTable.edit"/>
                 <button id="removeBtn" action="appUsersTable.remove"/>
+                <button id="usersReportBtn"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
