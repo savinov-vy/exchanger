@@ -31,6 +31,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="runReport" type="runReport"/>
             </actions>
             <columns>
                 <column id="login"/>
@@ -45,7 +46,7 @@
                 <button id="createBtn" action="appUsersTable.create"/>
                 <button id="editBtn" action="appUsersTable.edit"/>
                 <button id="removeBtn" action="appUsersTable.remove"/>
-                <button id="usersReportBtn"/>
+                <button id="usersReportBtn" action="appUsersTable.runReport"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
